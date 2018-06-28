@@ -32,9 +32,10 @@ GitHub contributors:
 - antoniofr
 - AntonLejon
 - Arnaud Lemercier
-- Aurelien Pelletier
+- Aurélien Pelletier
 - axi
 - Axome
+- Azouz-Jribi
 - Balestrino
 - bellini13
 - Benjamin PONGY
@@ -70,6 +71,7 @@ GitHub contributors:
 - Claudio Venturini
 - cmouleyre
 - codvir
+- ColonelMoutarde
 - Comkwatt
 - Conner Burnett
 - Corentin Delcourt
@@ -126,8 +128,9 @@ GitHub contributors:
 - Emilien Puget
 - emilien-puget
 - emily-d
-- Eolia
 - Emmanuel Marichal
+- enrique
+- Eolia
 - Eric Le Lay
 - Eric Rouvier
 - erickturcios
@@ -142,6 +145,7 @@ GitHub contributors:
 - firstred
 - flashmaestro
 - Florian Kwakkenbos
+- Florian Lemaitre
 - Flowster
 - fram
 - Francois Gaillard
@@ -152,8 +156,10 @@ GitHub contributors:
 - Gaelle ITZKOVITZ
 - Gamesh
 - Geoffray
+- gfilippakis
 - ggedamed
 - Giant Leap Lab
+- Giovanni
 - Gordon Coubrough
 - gr4devel
 - Granger Kevin
@@ -162,6 +168,7 @@ GitHub contributors:
 - Gregoire Belorgey
 - gskema
 - Guillaume DELOINCE
+- Guillaume Germain
 - Guillaume Lafarge
 - Guillaume Leseur
 - Gytis
@@ -184,6 +191,7 @@ GitHub contributors:
 - Ivan
 - ivancasasempere
 - J. Danse
+- Jáchym Toušek
 - janisVincent
 - Jaume
 - Javsmile
@@ -198,6 +206,7 @@ GitHub contributors:
 - Joan
 - Joan Juvanteny
 - joce
+- jocelyn fournier
 - Joe Siwiak
 - joemartin247
 - Joep Hendrix
@@ -248,12 +257,16 @@ GitHub contributors:
 - makk1ntosh
 - manuelbcd
 - marcinsz101
+- Marc González Majoral
 - Marco Cervellin
 - Marcos
 - Marius
+- Mark Sullivan
 - matiasiglesias
+- matrix
 - Mats Rynge
 - Matteo
+- Matthias RAIGNE
 - MatthieuB
 - matthieume
 - MaX3315
@@ -271,7 +284,7 @@ GitHub contributors:
 - Michel ANTOINE
 - Michel Courtade
 - Mickael Desgranges
-- Mickael Andrieu
+- Mickaël Andrieu
 - Mikael Blotin
 - Mikko Hellsing
 - Milow
@@ -280,6 +293,7 @@ GitHub contributors:
 - misthero
 - moncef102
 - montes
+- mounir.boukhris
 - mplh
 - MustangZhong
 - natrim
@@ -299,6 +313,7 @@ GitHub contributors:
 - oleacorner
 - Olivier Monaco
 - Otto Nascarella
+- Pablo Borowicz
 - Pan P
 - Pan P.
 - Pan Ploenes
@@ -316,6 +331,7 @@ GitHub contributors:
 - Petyuska
 - PhpMadman
 - Pierre
+- Pierre RAMBAUD
 - Pierre-Olivier Vares
 - Piotr Kaczor
 - Piotr Moćko
@@ -343,6 +359,7 @@ GitHub contributors:
 - Raphael Droz
 - Raphael Malie
 - raulgundin
+- Rémi Gaillard
 - remoteshaman.com
 - Renaud Sanchez - ChouetteWeb.fr
 - rGaillard
@@ -354,8 +371,8 @@ GitHub contributors:
 - Roland Schütz
 - romainberger
 - Roy
+- Rúben Martins
 - runningz
-- Remi Gaillard
 - s-duval
 - Sacha
 - Sacha FROMENT
@@ -399,6 +416,7 @@ GitHub contributors:
 - Sebastien Monterisi
 - Tanguy JACQUET
 - tchauviere
+- TechhDan
 - thecb1
 - therampagerado
 - Thibaud Chauviere

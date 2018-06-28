@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -512,7 +512,7 @@ class LanguageCore extends ObjectModel
             // Database translations deletion
             $result = Db::getInstance()->executeS('SHOW TABLES FROM `'._DB_NAME_.'`');
             foreach ($result as $row) {
-                if (isset($row['Tables_in_'._DB_NAME_]) && !empty($row['Tables_in_'._DB_NAME_]) && preg_match('/'.preg_quote(_DB_PREFIX_).'_lang/', $row['Tables_in_'._DB_NAME_])) {
+                if (isset($row['Tables_in_'._DB_NAME_]) && !empty($row['Tables_in_'._DB_NAME_]) && preg_match('/'.preg_quote(_DB_PREFIX_).'[a-z_]+_lang/', $row['Tables_in_'._DB_NAME_])) {
                     if (!Db::getInstance()->execute('DELETE FROM `'.$row['Tables_in_'._DB_NAME_].'` WHERE `id_lang` = '.(int)$this->id)) {
                         return false;
                     }
@@ -960,17 +960,8 @@ class LanguageCore extends ObjectModel
                 $files_list = $other_files;
             }
 
-            // don't know why, but it's needed & doesn't work otherwise
-            $translations_extract = array(
-                'translations/'.(string)$iso.'/admin.php',
-                'translations/'.(string)$iso.'/errors.php',
-                'translations/'.(string)$iso.'/fields.php',
-                'translations/'.(string)$iso.'/pdf.php',
-                'translations/'.(string)$iso.'/tabs.php',
-            );
-
-            if (!$gz->extractList(AdminTranslationsController::filesListToPaths($files_list), _PS_TRANSLATIONS_DIR_.'../') ||
-                !$gz->extractList($translations_extract, _PS_TRANSLATIONS_DIR_.'../')) {
+            // Extract all the content of the archive in the directory
+            if (!$gz->extractModify(_PS_TRANSLATIONS_DIR_.'../', '')) {
                 $errors[] = sprintf(Tools::displayError('Cannot decompress the translation file for the following language: %s'), (string)$iso);
             }
 
@@ -1015,7 +1006,7 @@ class LanguageCore extends ObjectModel
         return Cache::retrieve($key);
     }
 
-    public static function updateModulesTranslations(Array $modules_list)
+    public static function updateModulesTranslations(array $modules_list)
     {
         require_once(_PS_TOOL_DIR_.'tar/Archive_Tar.php');
 

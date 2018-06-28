@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -1460,6 +1460,7 @@ class AdminOrdersControllerCore extends AdminController
                         $cartRuleObj->active = 0;
                         if ($res = $cartRuleObj->add()) {
                             $cart_rule['id'] = $cartRuleObj->id;
+                            $cart_rule['free_shipping'] = $cartRuleObj->free_shipping;
                         } else {
                             break;
                         }
@@ -1475,6 +1476,7 @@ class AdminOrdersControllerCore extends AdminController
                             $order_cart_rule->name = Tools::getValue('discount_name');
                             $order_cart_rule->value = $cart_rule['value_tax_incl'];
                             $order_cart_rule->value_tax_excl = $cart_rule['value_tax_excl'];
+                            $order_cart_rule->free_shipping = $cart_rule['free_shipping'];
                             $res &= $order_cart_rule->add();
 
                             $order->total_discounts += $order_cart_rule->value;
@@ -2104,10 +2106,7 @@ class AdminOrdersControllerCore extends AdminController
             $order->total_shipping_tax_incl = $order_invoice->total_shipping_tax_incl;
             $order->total_shipping_tax_excl = $order_invoice->total_shipping_tax_excl;
         }
-
-        // Update product available quantity
-        StockAvailable::updateQuantity($order_detail->product_id, $order_detail->product_attribute_id, ($order_detail->product_quantity * -1), $order->id_shop);
-
+        
         // discount
         $order->total_discounts += (float)abs($cart->getOrderTotal(true, Cart::ONLY_DISCOUNTS));
         $order->total_discounts_tax_excl += (float)abs($cart->getOrderTotal(false, Cart::ONLY_DISCOUNTS));

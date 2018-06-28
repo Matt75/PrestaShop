@@ -1,5 +1,5 @@
 {*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
@@ -29,14 +29,17 @@
 		<form action="{$link->getPageLink('index', null, null, null, false, null, true)|escape:'html':'UTF-8'}" method="post">
 			<div class="form-group{if isset($msg) && $msg } {if $nw_error}form-error{else}form-ok{/if}{/if}" >
 				<input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" value="{if isset($msg) && $msg}{$msg}{elseif isset($value) && $value}{$value}{else}{l s='Enter your e-mail' mod='blocknewsletter'}{/if}" />
-                <button type="submit" name="submitNewsletter" class="btn btn-default button button-small">
-                    <span>{l s='Ok' mod='blocknewsletter'}</span>
-                </button>
+				<button type="submit" name="submitNewsletter" class="btn btn-default button button-small">
+					<span>{l s='Ok' mod='blocknewsletter'}</span>
+				</button>
 				<input type="hidden" name="action" value="0" />
 			</div>
+			{if isset($id_module)}
+				{hook h='displayGDPRConsent' id_module=$id_module}
+			{/if}
 		</form>
 	</div>
-    {hook h="displayBlockNewsletterBottom" from='blocknewsletter'}
+	{hook h="displayBlockNewsletterBottom" from='blocknewsletter'}
 </div>
 <!-- /Block Newsletter module-->
 {strip}

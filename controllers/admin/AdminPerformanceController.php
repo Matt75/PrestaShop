@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -485,18 +485,12 @@ class AdminPerformanceControllerCore extends AdminController
                         'type' => 'radio',
                         'label' => $this->l('Algorithm'),
                         'name' => 'PS_CIPHER_ALGORITHM',
-                        'hint' => $this->l('Mcrypt is faster than our custom BlowFish class, but requires the "mcrypt" PHP extension. If you change this configuration, all cookies will be reset.'),
                         'values' => array(
                             array(
                                 'id' => 'PS_CIPHER_ALGORITHM_1',
                                 'value' => 1,
                                 'label' => $this->l('Use Rijndael with mcrypt lib.').(function_exists('mcrypt_encrypt') ? '' : $warning_mcrypt)
                             ),
-                            array(
-                                'id' => 'PS_CIPHER_ALGORITHM_0',
-                                'value' => 0,
-                                'label' => $this->l('Use the custom BlowFish class.')
-                            )
                         )
                     )
                 ),

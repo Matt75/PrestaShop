@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -256,13 +256,15 @@ class OrderOpcControllerCore extends ParentOrderController
                                         // Wrapping fees
                                         $wrapping_fees = $this->context->cart->getGiftWrappingPrice(false);
                                         $wrapping_fees_tax_inc = $this->context->cart->getGiftWrappingPrice();
+                                        $summary = $this->getFormatedSummaryDetail();
                                         $result = array_merge($result, array(
+                                            'HOOK_DISPLAY_PRODUCT_PRICE_BLOCK' => Hook::exec('displayCartTotalPriceLabel',$summary),
                                             'HOOK_TOP_PAYMENT' => Hook::exec('displayPaymentTop'),
                                             'HOOK_PAYMENT' => $this->_getPaymentMethods(),
                                             'gift_price' => Tools::displayPrice(Tools::convertPrice(Product::getTaxCalculationMethod() == 1 ? $wrapping_fees : $wrapping_fees_tax_inc, new Currency((int)$this->context->cookie->id_currency))),
                                             'carrier_data' => $this->_getCarrierList(),
                                             'refresh' => (bool)$this->ajax_refresh),
-                                            $this->getFormatedSummaryDetail()
+                                            $summary
                                         );
                                         $this->ajaxDie(Tools::jsonEncode($result));
                                     }

@@ -1,5 +1,5 @@
 {*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
@@ -28,14 +28,14 @@
 	{l s='My vouchers'}
 </h1>
 
-{if isset($cart_rules) && count($cart_rules) && $nb_cart_rules}
+{if isset($cart_rules) && $nb_cart_rules}
 	<table class="discount table table-bordered footab">
 		<thead>
 			<tr>
 				<th data-sort-ignore="true" class="discount_code first_item">{l s='Code'}</th>
 				<th data-sort-ignore="true" class="discount_description item">{l s='Description'}</th>
 				<th class="discount_quantity item">{l s='Quantity'}</th>
-				<th data-sort-ignore="true" data-hide="phone,tablet" class="discount_value item">{l s='Value'}*</th>
+				<th data-sort-ignore="true" data-hide="phone,tablet" class="discount_value item">{l s='Value'}</th>
 				<th data-hide="phone,tablet" class="discount_minimum item">{l s='Minimum'}</th>
 				<th data-sort-ignore="true" data-hide="phone,tablet" class="discount_cumulative item">{l s='Cumulative'}</th>
 				<th data-hide="phone" class="discount_expiration_date last_item">{l s='Expiration date'}</th>
@@ -60,8 +60,13 @@
 							{l s='Free shipping'}
 						{/if}
 						{if $discountDetail.gift_product > 0}
-							{if $discountDetail.reduction_percent > 0 || $discountDetail.reduction_amount > 0 || $discountDetail.gift_product} + {/if}
-							{$discountDetail.gift_product_name} {l s='Free %s!' sprintf=$discountDetail.gift_product_name}!
+							{if $discountDetail.reduction_percent > 0 || $discountDetail.reduction_amount > 0} + {/if}
+							<a href="{$discountDetail.gift_product_link|escape:'html':'UTF-8'}">
+								{$discountDetail.gift_product_name|escape:'html':'UTF-8'}
+								{if isset($discountDetail.gift_product_attributes) && $discountDetail.gift_product_attributes|count_characters}
+								 ({$discountDetail.gift_product_attributes|escape:'html':'UTF-8'})
+								{/if}
+							</a>
 						{/if}
 					</td>
 					<td class="discount_minimum" data-value="{if $discountDetail.minimal == 0}0{else}{$discountDetail.minimal}{/if}">

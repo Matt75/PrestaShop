@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2017 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author    PrestaShop SA <contact@prestashop.com>
- *  @copyright 2007-2016 PrestaShop SA
+ *  @copyright 2007-2017 PrestaShop SA
  *  @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
@@ -675,10 +675,18 @@ abstract class ObjectModelCore implements Core_Foundation_Database_EntityInterfa
                 // A little explanation of what we do here : we want to create multishop entry when update is called, but
                 // only if we are in a shop context (if we are in all context, we just want to update entries that alread exists)
                 $shop_exists = Db::getInstance()->getValue('SELECT '.$this->def['primary'].' FROM '._DB_PREFIX_.$this->def['table'].'_shop WHERE '.$where);
+
                 if ($shop_exists) {
-                    $result &= Db::getInstance()->update($this->def['table'].'_shop', $fields, $where, 0, $null_values);
+                    if (Shop::isFeatureActive() && Shop::getContext() != Shop::CONTEXT_SHOP) {
+                        foreach ($fields as $key => $val) {
+                            if (!array_key_exists($key, (array)$this->update_fields)) {
+                                unset($fields[$key]);
+                            }
+                        }
+                    }
+                    $result &= Db::getInstance()->update($this->def['table'] . '_shop', $fields, $where, 0, $null_values);
                 } elseif (Shop::getContext() == Shop::CONTEXT_SHOP) {
-                    $result &= Db::getInstance()->insert($this->def['table'].'_shop', $all_fields, $null_values);
+                    $result &= Db::getInstance()->insert($this->def['table'] . '_shop', $all_fields, $null_values);
                 }
             }
         }

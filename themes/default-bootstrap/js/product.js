@@ -1,5 +1,5 @@
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -683,13 +683,7 @@ function updatePrice()
 	// 0 by default, +x if price is inscreased, -x if price is decreased
 	basePriceWithoutTax = basePriceWithoutTax + +combination.price;
 	basePriceWithTax = basePriceWithTax + +combination.price * (taxRate/100 + 1);
-
-	// If a specific price redefine the combination base price
-	if (combination.specific_price && combination.specific_price.price > 0)
-	{
-		basePriceWithoutTax = +combination.specific_price.price;
-		basePriceWithTax = +combination.specific_price.price * (taxRate/100 + 1);
-	}
+	
 
 	var priceWithDiscountsWithoutTax = basePriceWithoutTax;
 	var priceWithDiscountsWithTax = basePriceWithTax;
@@ -863,7 +857,7 @@ function updatePrice()
 	// It doesn't modify the price, it's only for display
 	if (productUnitPriceRatio > 0)
 	{
-		$('#unit_price_display').text(formatCurrency(unit_price * currencyRate, currencyFormat, currencySign, currencyBlank));
+		$('#unit_price_display').text(formatCurrency(unit_price, currencyFormat, currencySign, currencyBlank));
 		$('.unit-price').show();
 	}
 

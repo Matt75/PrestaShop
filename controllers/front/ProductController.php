@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -334,6 +334,9 @@ class ProductControllerCore extends FrontController
 
         $quantity_discounts = SpecificPrice::getQuantityDiscounts($id_product, $id_shop, $id_currency, $id_country, $id_group, null, true, (int)$this->context->customer->id);
         foreach ($quantity_discounts as &$quantity_discount) {
+            if (!isset($quantity_discount['base_price'])) {
+                $quantity_discount['base_price'] = 0;
+            }
             if ($quantity_discount['id_product_attribute']) {
                 $quantity_discount['base_price'] = $this->product->getPrice(Product::$_taxCalculationMethod == PS_TAX_INC, $quantity_discount['id_product_attribute']);
 

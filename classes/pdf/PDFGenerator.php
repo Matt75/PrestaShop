@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2017 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author 	PrestaShop SA <contact@prestashop.com>
- *  @copyright  2007-2016 PrestaShop SA
+ *  @copyright  2007-2017 PrestaShop SA
  *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
@@ -52,6 +52,7 @@ class PDFGeneratorCore extends TCPDF
         'pl' => 'dejavusans',
         'ar' => 'dejavusans',
         'fa' => 'dejavusans',
+        'fr' => 'dejavusans',
         'ur' => 'dejavusans',
         'az' => 'dejavusans',
         'ca' => 'dejavusans',
@@ -147,7 +148,7 @@ class PDFGeneratorCore extends TCPDF
         if (array_key_exists($iso_lang, $this->font_by_lang)) {
             $this->font = $this->font_by_lang[$iso_lang];
         }else {
-            $this->font = self::DEFAULT_FONT;
+            $this->font = 'dejavusans';
         }
 
         $this->setHeaderFont(array($this->font, '', PDF_FONT_SIZE_MAIN, '', false));

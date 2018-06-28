@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2017 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author 	PrestaShop SA <contact@prestashop.com>
- *  @copyright  2007-2016 PrestaShop SA
+ *  @copyright  2007-2017 PrestaShop SA
  *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
@@ -946,7 +946,7 @@ class AdminControllerCore extends Controller
     {
         if (Validate::isLoadedObject($object = $this->loadObject())) {
             if (($object->deleteImage())) {
-                $redirect = self::$currentIndex.'&add'.$this->table.'&'.$this->identifier.'='.Tools::getValue($this->identifier).'&conf=7&token='.$this->token;
+                $redirect = self::$currentIndex.'&update'.$this->table.'&'.$this->identifier.'='.Tools::getValue($this->identifier).'&conf=7&token='.$this->token;
                 if (!$this->ajax) {
                     $this->redirect_after = $redirect;
                 } else {

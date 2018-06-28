@@ -1,5 +1,5 @@
 {*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
@@ -591,13 +591,28 @@
 			$('#carrier_form').show();
 			$('#delivery_option').html(html);
 			$('#carriers_err').hide();
-			$("button[name=\"submitAddOrder\"]").removeAttr("disabled");
 		}
 		else
 		{
 			$('#carrier_form').hide();
 			$('#carriers_err').show().html('{l s='No carrier can be applied to this order'}');
-			$("button[name=\"submitAddOrder\"]").attr("disabled", "disabled");
+		}
+	}
+
+	function checkVirtualProduct(products, delivery_option_list) {
+		if (delivery_option_list.length == 0 && products.length > 0) {
+			var find = 1;
+			$.each(products, function () {
+				if (find == 1) {
+					this.is_virtual == 1 ? find = 1 : find = 0;
+				}
+			});
+			if (find == 1) {
+				$("button[name=\"submitAddOrder\"]").removeAttr("disabled");
+			}
+			else {
+				$("button[name=\"submitAddOrder\"]").attr("disabled", "disabled");
+			}
 		}
 	}
 
@@ -632,7 +647,7 @@
 					else
 						customization_errors = false;
 					$('#products_found').show();
-					products_found += '<label class="control-label col-lg-3">{l s='Product'}</label><div class="col-lg-6"><select id="id_product" onclick="display_product_attributes();display_product_customizations();"></div>';
+					products_found += '<label class="control-label col-lg-3">{l s='Product'}</label><div class="col-lg-6"><select id="id_product" onchange="display_product_attributes();display_product_customizations();"></div>';
 					attributes_html += '<label class="control-label col-lg-3">{l s='Combination'}</label><div class="col-lg-6">';
 					$.each(res.products, function() {
 						products_found += '<option '+(this.combinations.length > 0 ? 'rel="'+this.qty_in_stock+'"' : '')+' value="'+this.id_product+'">'+this.name+(this.combinations.length == 0 ? ' - '+this.formatted_price : '')+'</option>';
@@ -815,6 +830,7 @@
 			$('#carriers_part,#summary_part').show();
 
 		updateDeliveryOptionList(jsonSummary.delivery_option_list);
+		checkVirtualProduct(jsonSummary.summary.products,jsonSummary.delivery_option_list);
 
 		if (jsonSummary.cart.gift == 1)
 			$('#order_gift').attr('checked', true);

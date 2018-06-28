@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -374,7 +374,7 @@ class LinkCore
 
         // If the module has its own route ... just use it !
         if (Dispatcher::getInstance()->hasRoute('module-'.$module.'-'.$controller, $id_lang, $id_shop)) {
-            return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params);
+            return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params, false, $id_shop);
         } else {
             if ($id_shop) {
                 $allow = (int)Configuration::get('PS_REWRITING_SETTINGS', null, null, $id_shop);

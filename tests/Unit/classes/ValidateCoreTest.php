@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2017 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author 	PrestaShop SA <contact@prestashop.com>
- *  @copyright  2007-2016 PrestaShop SA
+ *  @copyright  2007-2017 PrestaShop SA
  *  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
  */
@@ -97,6 +97,14 @@ class ValidateCoreTest extends PHPUnit_Framework_TestCase
     public function testIsOptFloat($expected, $input)
     {
         $this->assertSame($expected, Validate::isOptFloat($input));
+    }
+
+    /**
+     * @dataProvider isIntDataProvider
+     */
+    public function testIsInt($expected, $input)
+    {
+        $this->assertSame($expected, Validate::isInt($input));
     }
         
         // --- providers ---
@@ -198,6 +206,26 @@ class ValidateCoreTest extends PHPUnit_Framework_TestCase
                 array(false, 'A'),
                 array(false, null),
             )
+        );
+    }
+
+    public function isIntDataProvider()
+    {
+        return array(
+            array(true, 0),
+            array(true, 42),
+            array(false, 4.2),
+            array(false, .42),
+            array(true, 42.),
+            array(false, "a42"),
+            array(false, "42a"),
+            array(true, 0x24),
+            array(true, 1337e0),
+            array(false, array()),
+            array(false, new \stdClass()),
+            array(false, null),
+            array(false, ''),
+            array(true, false),
         );
     }
 }

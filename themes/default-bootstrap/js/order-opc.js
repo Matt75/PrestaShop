@@ -1,5 +1,5 @@
 /*
-* 2007-2016 PrestaShop
+* 2007-2017 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2017 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -318,6 +318,10 @@ function updatePaymentMethods(json)
 	$('#opc_payment_methods-content #HOOK_PAYMENT').html(json.HOOK_PAYMENT);
 }
 
+function updateDisplayPrice(json) {
+	$('#HOOK_DISPLAY_PRODUCT_PRICE_BLOCK').html(json.HOOK_DISPLAY_PRODUCT_PRICE_BLOCK);
+}
+
 function updatePaymentMethodsDisplay()
 {
 	var checked = '';
@@ -448,6 +452,7 @@ function updateAddressSelection(is_adv_api)
 				}
 				updateCarrierList(jsonData.carrier_data);
 				updatePaymentMethods(jsonData);
+				updateDisplayPrice(jsonData);
 				updateCartSummary(jsonData.summary);
 				updateHookShoppingCart(jsonData.HOOK_SHOPPING_CART);
 				updateHookShoppingCartExtra(jsonData.HOOK_SHOPPING_CART_EXTRA);
