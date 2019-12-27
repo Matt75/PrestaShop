@@ -31,6 +31,10 @@ function ps1700_stores()
         FROM `'._DB_PREFIX_.'store`
     ');
 
+    if (empty($stores)) {
+        return true;
+    }
+
     $result = true;
     foreach ($stores as $store) {
         $hours = Tools::unSerialize($store['hours']);
